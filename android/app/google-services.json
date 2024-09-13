@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "817671627570",
+    "project_id": "appusagernd-flutter",
+    "storage_bucket": "appusagernd-flutter.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:817671627570:android:0626730ff2332d6f8aed2b",
+        "android_client_info": {
+          "package_name": "com.example.app_usage_rnd"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCp-XVgzN66KwKVlHo5g6SsvxW3aY_e9Yo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
