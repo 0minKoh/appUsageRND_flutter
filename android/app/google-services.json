@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "817671627570",
+    "firebase_url": "https://appusagernd-flutter-default-rtdb.firebaseio.com",
     "project_id": "appusagernd-flutter",
     "storage_bucket": "appusagernd-flutter.appspot.com"
   },

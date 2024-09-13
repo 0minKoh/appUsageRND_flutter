@@ -46,6 +46,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '817671627570',
     projectId: 'appusagernd-flutter',
     authDomain: 'appusagernd-flutter.firebaseapp.com',
+    databaseURL: 'https://appusagernd-flutter-default-rtdb.firebaseio.com',
     storageBucket: 'appusagernd-flutter.appspot.com',
     measurementId: 'G-Z5PR1M2FQG',
   );
@@ -55,6 +56,7 @@ class DefaultFirebaseOptions {
     appId: '1:817671627570:android:0626730ff2332d6f8aed2b',
     messagingSenderId: '817671627570',
     projectId: 'appusagernd-flutter',
+    databaseURL: 'https://appusagernd-flutter-default-rtdb.firebaseio.com',
     storageBucket: 'appusagernd-flutter.appspot.com',
   );
 
@@ -63,6 +65,7 @@ class DefaultFirebaseOptions {
     appId: '1:817671627570:ios:0fa55fb4a9fb13798aed2b',
     messagingSenderId: '817671627570',
     projectId: 'appusagernd-flutter',
+    databaseURL: 'https://appusagernd-flutter-default-rtdb.firebaseio.com',
     storageBucket: 'appusagernd-flutter.appspot.com',
     iosBundleId: 'com.example.appUsageRndAndroid',
   );
@@ -72,6 +75,7 @@ class DefaultFirebaseOptions {
     appId: '1:817671627570:ios:0fa55fb4a9fb13798aed2b',
     messagingSenderId: '817671627570',
     projectId: 'appusagernd-flutter',
+    databaseURL: 'https://appusagernd-flutter-default-rtdb.firebaseio.com',
     storageBucket: 'appusagernd-flutter.appspot.com',
     iosBundleId: 'com.example.appUsageRndAndroid',
   );
@@ -82,6 +86,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '817671627570',
     projectId: 'appusagernd-flutter',
     authDomain: 'appusagernd-flutter.firebaseapp.com',
+    databaseURL: 'https://appusagernd-flutter-default-rtdb.firebaseio.com',
     storageBucket: 'appusagernd-flutter.appspot.com',
     measurementId: 'G-JZNW3WLJEK',
   );
