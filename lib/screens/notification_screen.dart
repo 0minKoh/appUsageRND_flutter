@@ -52,7 +52,7 @@ class _LocalNotificationState extends State<LocalNotification> {
     NotificationDetails details = const NotificationDetails(
       android: AndroidNotificationDetails(
         "show_test",
-        "show_test",
+        "Test Notifications",
         channelDescription: "Test Local notications",
         importance: Importance.max,
         priority: Priority.high,
@@ -61,9 +61,14 @@ class _LocalNotificationState extends State<LocalNotification> {
     await _local.show(
       0,
       "타이틀이 보여지는 영역입니다.",
-      "컨텐츠 내용이 보여지는 영역입니다.\ntest show()",
+      "컨텐츠 내용이 보여지는 영역입니다.",
       details,
     );
+    await _uploadNotificationData();
+  }
+
+  Future<void> _uploadNotificationData() async {
+    // 알림 데이터를 업로드하는 코드
   }
 
   @override
