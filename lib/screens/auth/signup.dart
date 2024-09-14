@@ -220,7 +220,7 @@ class _SignUpPageState extends State<SignUpPage> {
         'health_data': []
       });
 
-      Navigator.pushNamed(context, '/home');
+      Navigator.pushReplacementNamed(context, '/home');
 
       ScaffoldMessenger.of(context)
           .showSnackBar(SnackBar(content: Text('회원가입 완료!')));

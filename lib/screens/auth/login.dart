@@ -110,7 +110,7 @@ class _LoginPageState extends State<LoginPage> {
 
     try {
       await _auth.signInWithEmailAndPassword(email: email, password: password);
-      Navigator.pushNamed(context, '/home');
+      Navigator.pushReplacementNamed(context, '/home');
       ScaffoldMessenger.of(context)
           .showSnackBar(SnackBar(content: Text('로그인 성공!')));
     } catch (e) {
