@@ -105,11 +105,12 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   Future<void> _login() async {
-    String email = _emailController.text.trim();
-    String password = _passwordController.text.trim();
+    String email = _emailController.text;
+    String password = _passwordController.text;
 
     try {
       await _auth.signInWithEmailAndPassword(email: email, password: password);
+      Navigator.pushNamed(context, '/home');
       ScaffoldMessenger.of(context)
           .showSnackBar(SnackBar(content: Text('로그인 성공!')));
     } catch (e) {

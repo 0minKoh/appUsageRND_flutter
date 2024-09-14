@@ -209,7 +209,7 @@ class _SignUpPageState extends State<SignUpPage> {
       String? deviceName = _deviceName; // 기기 이름은 직접 가져오거나 설정
 
       // Firebase Realtime Database에 데이터 저장
-      _database.child('users').child(userId).set({
+      await _database.child('users').child(userId).set({
         'UUID': userId,
         'email': email,
         'age': age,
@@ -219,6 +219,8 @@ class _SignUpPageState extends State<SignUpPage> {
         'notifications': [],
         'health_data': []
       });
+
+      Navigator.pushNamed(context, '/home');
 
       ScaffoldMessenger.of(context)
           .showSnackBar(SnackBar(content: Text('회원가입 완료!')));
