@@ -1,3 +1,7 @@
+.crashlytics/
+.vscode/
+
+
 # Miscellaneous
 *.class
 *.log
@@ -9,6 +13,7 @@
 .history
 .svn/
 migrate_working_dir/
+
 
 # IntelliJ related
 *.iml

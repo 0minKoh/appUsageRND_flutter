@@ -30,7 +30,7 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       // 여기에서 mounted가 된 후 실행할 코드를 작성합니다.
-      uploadTest();
+      // uploadTest();
       if (mounted) {
         // 예: 권한 요청이나 데이터 로딩 등
         checkAllPermissions();
