@@ -1,9 +1,11 @@
 import 'dart:io';
 
+import 'package:app_usage_rnd_android/db/database_helper.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:app_usage_rnd_android/models/user_profile_model.dart';
 
 class SignUpPage extends StatefulWidget {
   @override
@@ -11,6 +13,10 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPageState extends State<SignUpPage> {
+  // Initialize the database
+  final dbHelper = DatabaseHelper.instance;
+
+  // Firebase Auth & DB
   final _auth = FirebaseAuth.instance;
   final _database = FirebaseDatabase.instance.ref();
 
@@ -219,6 +225,19 @@ class _SignUpPageState extends State<SignUpPage> {
         'notifications': [],
         'health_data': []
       });
+
+      // SQLite에 데이터 저장
+      UserProfile newUser = UserProfile(
+        id: userId,
+        email: email,
+        age: age,
+        gender: gender ?? "",
+        device: deviceName ?? "",
+        appUsage: [],
+        notifications: [],
+        healthData: [],
+      );
+      await dbHelper.insertUserProfile(newUser);
 
       Navigator.pushReplacementNamed(context, '/home');
 

@@ -3,6 +3,7 @@ import 'package:app_usage_rnd_android/background/app_usage_worker.dart';
 import 'package:app_usage_rnd_android/screens/app_usage_screen.dart';
 import 'package:app_usage_rnd_android/screens/auth/login.dart';
 import 'package:app_usage_rnd_android/screens/auth/signup.dart';
+import 'package:app_usage_rnd_android/screens/db/db_screen.dart';
 import 'package:app_usage_rnd_android/screens/health_connect.dart';
 import 'package:app_usage_rnd_android/screens/notification_screen.dart';
 import 'package:flutter/material.dart';
@@ -43,11 +44,12 @@ class MainWidget extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: HomeScreen(),
+      home: SignUpPage(),
       routes: {
         '/login': (context) => LoginPage(),
         '/signup': (context) => SignUpPage(),
         '/home': (context) => HomeScreen(),
+        '/db-read': (context) => DbScreen(),
       },
     );
   }

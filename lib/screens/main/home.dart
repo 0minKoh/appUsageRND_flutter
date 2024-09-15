@@ -179,7 +179,12 @@ class _HomeScreenState extends State<HomeScreen> {
               deniedColor: Colors.red,
             ),
             SizedBox(height: 40),
-            CustomElevatedButton(text: '권한 확인', onPressed: checkAllPermissions)
+            CustomElevatedButton(text: '권한 확인', onPressed: checkAllPermissions),
+            CustomElevatedButton(
+                text: 'DB-Read로 이동',
+                onPressed: () {
+                  Navigator.pushNamed(context, '/db-read');
+                })
           ],
         ),
       ),
