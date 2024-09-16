@@ -1,0 +1,1 @@
+const CHECK_PERIOD_MINUTES = 1;

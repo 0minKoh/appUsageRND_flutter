@@ -1,3 +1,6 @@
+import 'dart:convert';
+
+import 'package:app_usage_rnd_android/models/app_usage_model.dart';
 import 'package:app_usage_rnd_android/models/user_profile_model.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
@@ -114,6 +117,75 @@ class DatabaseHelper {
       table,
       where: '$columnId = ?',
       whereArgs: [id],
+    );
+  }
+
+  // 특정 UserProfile의 app_usage 데이터에 AppUsage 추가
+  // 특정 UserProfile의 app_usage 데이터에 AppUsage 추가
+  Future<void> addAppUsage(String userId, AppUsageDay appUsageDay) async {
+    Database db = await instance.database;
+
+    // 1. 해당 유저의 app_usage 데이터를 가져옴
+    final List<Map<String?, dynamic>> maps = await db.query(
+      table,
+      columns: [columnAppUsage],
+      where: '$columnId = ?',
+      whereArgs: [userId],
+    );
+    print("\n\n maps: \n $maps \n\n");
+
+    // 2. 가져온 데이터를 JSON으로 변환
+    String? appUsageJson = maps.isNotEmpty ? maps.first[columnAppUsage] : null;
+    Map<String, List<dynamic>> appUsageMap = {};
+
+    if (appUsageJson != null) {
+      List<dynamic> appUsageList = jsonDecode(appUsageJson) as List<dynamic>;
+      for (var entry in appUsageList) {
+        if (entry is Map<String, dynamic>) {
+          entry.forEach((key, value) {
+            appUsageMap[key] = List<dynamic>.from(value);
+          });
+        }
+      }
+    }
+
+    // 3. newUsageList 데이터를 날짜별로 분류하여 추가
+    List<AppUsage> newUsageList = appUsageDay.usageData;
+    String date = appUsageDay.date;
+
+    if (!appUsageMap.containsKey(date)) {
+      appUsageMap[date] = [];
+    }
+
+    for (AppUsage newUsage in newUsageList) {
+      appUsageMap[date]?.add(newUsage.toJson());
+    }
+
+    // 4. 갱신된 데이터를 다시 JSON으로 변환하여 DB에 저장
+    String updatedAppUsageJson =
+        jsonEncode(appUsageMap.entries.map((e) => {e.key: e.value}).toList());
+    print("\n\n updatedAppUsageJson: \n $updatedAppUsageJson \n\n");
+    await db.update(
+      table,
+      {columnAppUsage: updatedAppUsageJson},
+      where: '$columnId = ?',
+      whereArgs: [userId],
+    );
+  }
+
+  // (UPDATE) 특정 UserProfile의 app_usage 값을 빈 리스트로 초기화
+  Future<int> resetAppUsage(String userId) async {
+    Database db = await instance.database;
+
+    // 빈 리스트로 초기화된 JSON 문자열
+    String emptyAppUsage = jsonEncode([]);
+
+    // 업데이트 쿼리 실행
+    return await db.update(
+      table,
+      {columnAppUsage: emptyAppUsage},
+      where: '$columnId = ?',
+      whereArgs: [userId],
     );
   }
 }

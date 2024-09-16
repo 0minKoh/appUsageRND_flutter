@@ -9,8 +9,8 @@ class AppUsageDay {
 
   factory AppUsageDay.fromJson(Map<String, dynamic> json) {
     return AppUsageDay(
-      date: json['date'],
-      usageData: (json['usageData'] as List)
+      date: json.keys.first,
+      usageData: (json[json.keys.first] as List)
           .map((data) => AppUsage.fromJson(data))
           .toList(),
     );
@@ -25,12 +25,12 @@ class AppUsageDay {
 class AppUsage {
   final String appBundleId;
   final String startTime;
-  final String endTime;
+  String? endTime;
 
   AppUsage({
     required this.appBundleId,
     required this.startTime,
-    required this.endTime,
+    this.endTime,
   });
 
   factory AppUsage.fromJson(Map<String, dynamic> json) {
@@ -47,25 +47,3 @@ class AppUsage {
         'end_time': endTime,
       };
 }
-
-
-// AppUsageModel Schema
-// {
-//   "YYYY-MM-DD": [
-//     {
-//       "date": [
-//         {
-//           "packageName": "com.example.app",
-//           "start_time": "2024-09-14T09:00:00",
-//           "end_time": "2024-09-14T10:00:00"
-//         },
-//         {
-//           "packageName": "com.example.app2",
-//           "start_time": "2024-09-14T11:00:00",
-//           "end_time": null
-//         }
-//       ]
-//     }
-//   ]
-// }
-

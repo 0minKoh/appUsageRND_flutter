@@ -18,18 +18,17 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-
   // worker 초기화
-  // Workmanager().initialize(
-  //   callbackDispatcher, // 분리된 파일의 함수 호출
-  //   isInDebugMode: true, // 디버그 모드 활성화
-  // );
+  Workmanager().initialize(
+    callbackDispatcher, // 분리된 파일의 함수 호출
+    isInDebugMode: true, // 디버그 모드 활성화
+  );
 
-  // // 백그라운드 작업 등록
-  // Workmanager().registerOneOffTask(
-  //   "task-test-240914v1",
-  //   "task-test-240914v1", // 등록할 작업의 이름
-  // );
+  Workmanager().registerPeriodicTask(
+    "appUsageTracker_v0",
+    "appUsageTracker",
+    frequency: const Duration(minutes: 1), // 매 1분마다 실행
+  );
 
   runApp(MainWidget());
 }
@@ -44,7 +43,7 @@ class MainWidget extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: SignUpPage(),
+      home: HomeScreen(),
       routes: {
         '/login': (context) => LoginPage(),
         '/signup': (context) => SignUpPage(),

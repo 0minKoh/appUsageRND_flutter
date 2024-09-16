@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:app_usage_rnd_android/models/app_usage_model.dart';
 import 'package:app_usage_rnd_android/models/health_data_model.dart';
 import 'package:app_usage_rnd_android/models/notification_model.dart';
@@ -31,7 +33,7 @@ class UserProfile {
       age: json['age'],
       gender: json['gender'],
       device: json['device'],
-      appUsage: (json['app_usage'] as List)
+      appUsage: (jsonDecode(json['app_usage']) as List)
           .map((data) => AppUsageDay.fromJson(data))
           .toList(),
       notifications: (json['notifications'] as List)

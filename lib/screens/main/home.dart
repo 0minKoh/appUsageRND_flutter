@@ -1,6 +1,10 @@
 import 'dart:io';
 
+import 'package:app_usage_rnd_android/background/cancel_worker.dart';
 import 'package:app_usage_rnd_android/core/services/firebase_db_upload.dart';
+import 'package:app_usage_rnd_android/core/services/notification_service.dart';
+import 'package:app_usage_rnd_android/db/database_helper.dart';
+import 'package:app_usage_rnd_android/repositories/preferences.dart';
 import 'package:app_usage_rnd_android/widgets/custom_elevated_button.dart';
 import 'package:app_usage_rnd_android/widgets/custom_modal.dart';
 import 'package:flutter/material.dart';
@@ -94,6 +98,9 @@ class _HomeScreenState extends State<HomeScreen> {
   Future<void> _checkAppUsagePermission() async {
     final bool isPermissionGranted =
         await UsageStats.checkUsagePermission() ?? false;
+    if (isPermissionGranted) {
+      await NotificationService().initializeNotification();
+    }
     setState(() {
       isUsagePermissionGranted = isPermissionGranted;
     });
@@ -184,7 +191,23 @@ class _HomeScreenState extends State<HomeScreen> {
                 text: 'DB-Read로 이동',
                 onPressed: () {
                   Navigator.pushNamed(context, '/db-read');
-                })
+                }),
+            CustomElevatedButton(
+                text: '모든 Worker 취소',
+                onPressed: () {
+                  cancelAllWorkers();
+                }),
+            CustomElevatedButton(
+                text: 'lastEndDate 초기화',
+                onPressed: () {
+                  PreferencesRepository().initLastEndDate();
+                }),
+            CustomElevatedButton(
+                text: 'appUsage localDB 초기화',
+                onPressed: () {
+                  DatabaseHelper.instance
+                      .resetAppUsage("vCTvVnWzTTW7xhvKs285ZDk6Scs1");
+                }),
           ],
         ),
       ),
